@@ -1,0 +1,97 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Store app</title>
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    </head>
+
+    <body style="background-color: grey; display: flex; flex-direction: row; margin: 0;">
+        <div style="position:sticky; width: 13%; border-right: 2px solid red; align-items: center; 
+        display: flex; flex-direction: column; align-items: center; padding-top: 100px;" >
+            <a href="" style="border: 1px solid white ; 
+            border-radius: 20px;
+            width: 100px;
+            display: flex; justify-content: center; text-decoration: none; color: #000;
+            background-color: white; font-size: 10px;margin-top: 30px;  "><h1> Dashboard</h1></a>
+            <a href="" style="border: 1px solid white ; 
+            border-radius: 20px;
+            width: 100px;
+            display: flex; justify-content: center; text-decoration: none; color: #000;
+            background-color: white; font-size: 10px; margin-top: 30px; "><h1> Table</h1></a>
+        </div>
+        <section style="padding: 10px;">
+        <h1>CREATE: May Node and Express be with you.</h1>
+        
+        <!-- (1): CREATE Task -->         
+        <!-- --> 
+        <div style="display: flex; 
+            padding: 50px;
+            border: 1px solid red ;
+            width: 800px;
+            height: 200px;
+            margin: 40px;
+        ">
+        <form action="/quotes" method="POST">  
+            <input type="number" placeholder="id" name="id" />     
+            <input type="text" placeholder="name" name="name" />        
+            <input type="text" placeholder="quote" name="quote" />
+            <input type="file" placeholder="image" name="image">
+            <button type="submit">Submit</button>
+        </form>
+        </div>
+        <!-- -->                               
+
+        <!-- (2) READ Task -->                        
+        <h2> READ: All Quotes in Database </h2>
+            <!-- Loop through quotes -->
+                    <table style="margin: 0px; width: 100%; border: 2px solid rgb(255, 255, 255); background-color: #fff; ">
+                        <thead >
+                            <th style="border-bottom: 2px solid rgb(0, 255, 55);">Id</th>
+                            <th style="border-bottom: 2px solid rgb(0, 255, 55);">Name</th>
+                            <th style="border-bottom: 2px solid rgb(0, 255, 55);">Quote</th>
+                            <th style="border-bottom: 2px solid rgb(0, 255, 55);">Image</th>
+                            <th style="border-bottom: 2px solid rgb(0, 255, 55);">Actions</th>
+                        </thead>
+                        <tbody style="text-align: center">
+                                <% for(var i = 0; i < quotes.length; i++) {%>
+                                    <tr>
+                                        <td><span><%= quotes[i].id %></span></td>
+                                        <td><span><%= quotes[i].name %></span></td>
+                                        <td><span><%= quotes[i].quote %></span></td>
+                                        <td><img src="<%= quotes[i].image %>" alt="Quote Image" width="50px" height="50px"></td>
+                                        <td><a href="/"><i class="fa fa-edit" title="EDIT"></i></a>
+                                            <button type="submit" id="delete-button" ><i class="fa fa-trash" title="DELETE"></i></button> </td>
+                                    </tr>
+                                <% } %> 
+                        </tbody>
+                    </table>   
+
+        <!-- (3) UPDATE Task -->
+        <div>
+            <h2>UPDATE: Darth Vadar invades!</h2>
+            <p>
+            Replace first Yoda's quote with a quote written by Darth Vadar
+            </p>
+            <button id="update-button">Replace Yoda's quote</button>
+        </div>
+
+        <div>
+            <h2>DELETE: Remove Darth Vadar!</h2>
+            <p>
+            Delete one Darth Vadar's quote. Does nothing if there are no more Darth Vadar's quote
+            </p>
+            <button id="delete-button">Delete Darth Vadar's quote</button>
+        </div>
+    </section>
+
+        <!-- ... -->
+        <script src="/main.js"></script>
+    
+    </body>
+
+</html>
